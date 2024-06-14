@@ -9,17 +9,16 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file main.c 
+ * @brief Calculate statistics for an array of 8-bit values 
  *
- * <Add Extended Description Here>
+ * Analyze an array of unsigned char data items and report analytics on the 
+ * maximum, minimum, mean, and median of the data set.
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Fergus Deffely 
+ * @date 14-06-2024 
  *
  */
-
-
 
 #include <stdio.h>
 #include "stats.h"
@@ -37,7 +36,35 @@ void main() {
 
   /* Other Variable Declarations Go Here */
   /* Statistics and Printing Functions Go Here */
+  printf("stats.c\n");
 
 }
 
-/* Add other Implementation File Code Here */
+void print_statistics(unsigned char * array, unsigned int) {
+
+}
+
+void print_array (unsigned char * array, unsigned int){
+
+}
+
+unsigned char find_median (unsigned char * array, unsigned int) {
+    return 0;
+}
+
+float find_mean (unsigned char * array, unsigned int) {
+    return 0.0;
+}
+
+unsigned char find_maximum (unsigned char * array, unsigned int) {
+
+}
+
+unsigned char   find_minimum (unsigned char * array, unsigned int) {
+
+}
+
+unsigned char * sort_array(unsigned char * array, unsigned int) {
+
+}
+
