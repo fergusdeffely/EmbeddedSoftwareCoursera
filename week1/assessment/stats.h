@@ -63,7 +63,7 @@ void print_array (unsigned char * array, unsigned int);
  * @return int - the median value 
  */
 
-unsigned char find_median (unsigned char * array, unsigned int);
+float find_median (unsigned char * array, unsigned int);
 
 /**
  * @brief find_mean 

@@ -21,6 +21,7 @@
  */
 
 #include <stdio.h>
+#include <stdbool.h>
 #include "stats.h"
 
 /* Size of the Data Set */
@@ -34,37 +35,128 @@ void main() {
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
 
-  /* Other Variable Declarations Go Here */
-  /* Statistics and Printing Functions Go Here */
-  printf("stats.c\n");
+  printf("\n");
+  printf("==============\n");
+  printf("array contents\n");
+  printf("==============\n");
+  print_array(test, SIZE);
+  
+  sort_array(test, SIZE);
+  printf("\n");
+  printf("=====================\n");
+  printf("sorted array contents\n");
+  printf("=====================\n");
+  print_array(test, SIZE);
 
+  print_statistics(test, SIZE);
 }
 
-void print_statistics(unsigned char * array, unsigned int) {
+void print_statistics(unsigned char * array, unsigned int len) {
 
+  int maximum = find_maximum(array, SIZE);
+  int minimum = find_minimum(array, SIZE);
+  float mean = find_mean(array, SIZE);
+  float median = find_median(array, SIZE);
+
+  printf("\n");
+  printf("================\n");
+  printf("array statistics:\n");
+  printf("================\n\n");
+  printf("maximum = %d\n", maximum);
+  printf("minimum = %d\n", minimum);
+  printf("mean = %.2f\n", mean);
+  printf("median = %.1f\n\n", median);
 }
 
-void print_array (unsigned char * array, unsigned int){
+void print_array (unsigned char * array, unsigned int len) {
 
+    if ( len <= 0 ) {
+        return;
+    }
+
+    for ( int i = 0; i < len; i++ ){
+        if ( i % 5 == 0 ){
+            printf("\n");
+        }
+        printf("[%02d] = %3d : ", i, array[i]);
+    } 
+    printf("\n");
 }
 
-unsigned char find_median (unsigned char * array, unsigned int) {
-    return 0;
+float find_median (unsigned char * array, unsigned int len) {
+
+    if ( len <= 0 ) {
+        return 0;
+    }
+
+    if ( len % 2 > 0 ) {
+        return array[len / 2];
+    }
+
+    return (float)(array[len / 2] + array[(len / 2) - 1]) / 2;
 }
 
-float find_mean (unsigned char * array, unsigned int) {
-    return 0.0;
+float find_mean (unsigned char * array, unsigned int len) {
+
+    int sum = 0;
+
+    for ( int i = 0; i < len; i++) {
+        sum += array[i];
+    }
+
+    return (float)sum / len;
 }
 
-unsigned char find_maximum (unsigned char * array, unsigned int) {
+unsigned char find_maximum (unsigned char * array, unsigned int len) {
 
+    int maximum = 0;
+
+    for ( int i = 0; i < len; i++ ) {
+        if ( array[i] > maximum ) {
+            maximum = array[i];
+        }
+    } 
+
+    return maximum; 
 }
 
-unsigned char   find_minimum (unsigned char * array, unsigned int) {
+unsigned char find_minimum (unsigned char * array, unsigned int len) {
 
+    if ( len <= 0 ) {
+        return 0;
+    }
+
+    int minimum = array[0];
+
+    for ( int i = 0; i < len; i++ ) {
+        if ( array[i] < minimum ) {
+            minimum = array[i];
+        }
+    } 
+
+    return minimum; 
 }
 
-unsigned char * sort_array(unsigned char * array, unsigned int) {
+unsigned char * sort_array(unsigned char * array, unsigned int len) {
 
+    bool sorted;
+    int swap;
+
+    do {
+        sorted = true;
+        for ( int i = 0; i + 1 < len; i++) {
+            if ( array[i] > array[i + 1]) {
+                /* 
+                    printf("array: [%d] and [%d] : %d > %d : swapping...\n", i, i+1, array[i], array[i+1]);
+                */
+                swap = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = swap;
+                sorted = false;
+            }
+        }
+    } while(sorted == false);
+
+    return array;
 }
 
